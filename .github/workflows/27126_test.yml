@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
       
     - name: Install dependencies
       run: |
@@ -23,7 +23,7 @@ jobs:
         pip install -r requirements.txt > requirements_install_log.txt 2>&1 || echo "Napaka pri req" > napaka.txt
     
     - name: Error msg
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
         name: errors
@@ -36,9 +36,9 @@ jobs:
     needs: setup-environment
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
     - name: Checkout code
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v2
       with:
         name: errors    
     - name: Run tests and capture output
