@@ -18,8 +18,17 @@ jobs:
       
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        touch napaka.txt
+        python -m pip install --upgrade pip > pip_install_log.txt 2>&1 || echo "Napaka pri pip." > napaka.txt
+        pip install -r requirements.txt > requirements_install_log.txt 2>&1 || echo "Napaka pri req" > napaka.txt
+    
+    - name: Error msg
+      uses: actions/upload-artifact@v3
+      if: ${{ always() }}
+      with:
+        name: errors
+        path: napaka.txt
+        if-no-files-found: ignore
         
       continue-on-error: true
 
@@ -28,14 +37,19 @@ jobs:
     needs: setup-environment
     
     steps:
+    - uses: actions/checkout@v3
     - name: Checkout code
-      uses: actions/checkout@v2
-    
+      uses: actions/download-artifact@v3
+      with:
+        name: errors    
     - name: Run tests and capture output
       run: |
-        python test_script.py > test_output.txt || echo "Test failed" > napaka.txt
-
-    - name: Check for errors
-      run: | 
-          touch napaka.txt
+        if [ -s napaka.txt ]; then
+          echo "Env not set up correctly"
+          cat napaka.txt
           exit 1
+        else
+          echo "Code testing"
+        fi
+    - name: Pytesting
+      run: pytest
