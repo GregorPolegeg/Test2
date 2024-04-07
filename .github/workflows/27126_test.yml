@@ -23,7 +23,7 @@ jobs:
 
     - name: Run tests and capture output
       run: |
-        python main.py > test_output.txt || echo "Test failed" > napaka.txt
+        python test_main.py > test_output.txt || echo "Test failed" > napaka.txt
 
     - name: Check for errors
       run: |
