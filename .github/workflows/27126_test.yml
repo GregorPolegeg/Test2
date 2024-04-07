@@ -50,4 +50,4 @@ jobs:
           echo "Code testing"
         fi
     - name: Pytesting
-      run: pytest
+      run: /home/kali/.local/bin/pytest
