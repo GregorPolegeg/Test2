@@ -2,7 +2,6 @@ import pytest
 from main import calculate_sqrt, calculate_cube
 
 
-
 number_to_sqrt = 9
 expected_sqrt_result = 3
 sqrt_result = calculate_sqrt(number_to_sqrt)
