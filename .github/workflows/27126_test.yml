@@ -25,10 +25,8 @@ jobs:
 
     - name: Run tests
       run: |
-        python test_script.py || echo "Test failed" > napaka.txt
+        python main.py || echo "Test failed" > napaka.txt
 
     - name: Check for errors
       if: failure()
       run: cat napaka.txt
-
-
