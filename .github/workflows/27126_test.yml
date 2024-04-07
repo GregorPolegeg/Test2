@@ -25,10 +25,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run tests
+    - name: Run tests and capture output
       run: |
-        python main.py || echo "Test failed" > napaka.txt
+        python main.py > test_output.txt || echo "Test failed" > napaka.txt
 
     - name: Check for errors
-      if: failure()
-      run: cat napaka.txt
+      run: |
+        if [ -f "napaka.txt" ]; then
+          cat napaka.txt
+          exit 1
+        fi
