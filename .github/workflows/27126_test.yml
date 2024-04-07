@@ -21,7 +21,6 @@ jobs:
         touch napaka.txt
         python -m pip install --upgrade pip > pip_install_log.txt 2>&1 || echo "Napaka pri pip." > napaka.txt
         pip install -r requirements.txt > requirements_install_log.txt 2>&1 || echo "Napaka pri req" > napaka.txt
-        pip install pytest
     
     - name: Error msg
       uses: actions/upload-artifact@v3
