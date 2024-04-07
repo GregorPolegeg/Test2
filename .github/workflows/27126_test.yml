@@ -38,6 +38,6 @@ jobs:
     - name: Check for errors
       run: |
         if [ -f "napaka.txt" ]; then
-          cat napaka.txt
+          touch napaka.txt
           exit 1
         fi
