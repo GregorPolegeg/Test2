@@ -29,7 +29,6 @@ jobs:
         name: errors
         path: napaka.txt
         if-no-files-found: ignore
-        
 
   run-tests:
     runs-on: self-hosted
