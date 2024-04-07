@@ -7,7 +7,6 @@ on:
     types:
       - completed
       
-
 jobs:
   deploy:
     runs-on: self-hosted
