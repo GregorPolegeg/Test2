@@ -9,12 +9,6 @@ jobs:
   test:
     runs-on: self-hosted
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        ref: v2
-
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
