@@ -1,3 +1,4 @@
+import pytest
 import math
 
 def calculate_sqrt(number):
