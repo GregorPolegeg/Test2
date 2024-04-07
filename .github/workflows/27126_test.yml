@@ -9,6 +9,7 @@ jobs:
   test:
     runs-on: self-hosted
 
+    steps:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
