@@ -51,4 +51,4 @@ jobs:
           echo "Code testing"
         fi
     - name: Pytesting
-      run: pytest test_main
+      run: pytest test_main.py
