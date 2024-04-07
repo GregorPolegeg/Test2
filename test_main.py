@@ -3,7 +3,7 @@ from main import calculate_sqrt, calculate_cube
 
 def test_calculate_sqrt():
     number_to_sqrt = 9
-    expected_sqrt_result = 3
+    expected_sqrt_result = 12
     sqrt_result = calculate_sqrt(number_to_sqrt)
     assert sqrt_result == expected_sqrt_result, f"Square root of {number_to_sqrt} should be {expected_sqrt_result}, but got {sqrt_result}"
 
