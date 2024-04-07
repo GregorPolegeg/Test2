@@ -30,7 +30,6 @@ jobs:
         path: napaka.txt
         if-no-files-found: ignore
         
-      continue-on-error: true
 
   run-tests:
     runs-on: self-hosted
