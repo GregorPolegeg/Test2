@@ -1,4 +1,6 @@
+import pytest
 from main import calculate_sqrt, calculate_cube
+
 
 
 number_to_sqrt = 9
