@@ -6,24 +6,15 @@ on:
     branches: [main]
     types:
       - completed
-      
+
 jobs:
   deploy:
     runs-on: self-hosted
-    if: success()
+    if: github.event.workflow_run.conclusion == 'success'
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-
-    - name: Image creation
-      run: docker build . -t ${{ secrets.DOCKER_USERNAME }}/sysa:${{ github.sha }}
-
-    - name: Image push
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/sysa:${{ github.sha }}
+    - name: Build and Push Docker Image
+      run: ./zapakiraj_27126.sh
