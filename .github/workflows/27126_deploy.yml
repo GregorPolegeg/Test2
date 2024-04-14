@@ -16,5 +16,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Set Environment Variables
+      run: |
+        echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}" >> $GITHUB_ENV
+        echo "DOCKER_ACCESS_TOKEN=${{ secrets.DOCKER_ACCESS_TOKEN }}" >> $GITHUB_ENV
+        echo "GITHUB_SHA=${{ github.event.workflow_run.head_sha }}" >> $GITHUB_ENV
+
     - name: Build and Push Docker Image
       run: ./zapakiraj_27126.sh
