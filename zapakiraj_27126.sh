@@ -1,12 +1,18 @@
 #!/bin/bash
+
+# Check required variables
+if [ -z "$DOCKER_USERNAME" ] || [ -z "$DOCKER_ACCESS_TOKEN" ] || [ -z "$GITHUB_SHA" ]; then
+  echo "Error: One or more required environment variables are missing."
+  exit 1
+fi
+
+# Login to Docker Hub
 echo "${DOCKER_ACCESS_TOKEN}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
 
-# Zgradite sliko s SHA vrednostjo trenutnega commit-a
+# Build and push image with commit SHA tag
 docker build -t "${DOCKER_USERNAME}/sysa:${GITHUB_SHA}" .
-# Potisnite sliko s SHA vrednostjo na DockerHub
 docker push "${DOCKER_USERNAME}/sysa:${GITHUB_SHA}"
 
-# Zgradite sliko s oznako "latest"
+# Build and push image with 'latest' tag
 docker build -t "${DOCKER_USERNAME}/sysa:latest" .
-# Potisnite sliko s oznako "latest" na DockerHub
 docker push "${DOCKER_USERNAME}/sysa:latest"
